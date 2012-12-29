@@ -1,0 +1,3 @@
+[submodule "abxyjs"]
+	path = abxyjs
+	url = git://github.com/xymostech/abxyjs.git
