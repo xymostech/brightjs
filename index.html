@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Test</title>
+        <script src="js/underscore-min.js" type="text/javascript"></script>
+        <script src="js/jquery.min.js" type="text/javascript"></script>
+        <script src="js/abxy/abxy.js" type="text/javascript"></script>
+        <script src="js/bright.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            $(function() {
+                ABXY.Startup({ root: "js/abxy" });
+                ABXY.OnLoad(function() {
+                    Bright.Startup();
+                });
+            });
+        </script>
+        <style type="text/css">
+            #canvas {
+                border: 1px solid black;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id="canvas">
+            Your browser doesn't support this. :(
+        </canvas>
+    </body>
+</html>
