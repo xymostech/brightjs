@@ -7,6 +7,7 @@ var blood = Bright.particle.Extend({
             "blood", sprites, 25, 0.5, x, y,
             ABXY.util.random(-40, 40), ABXY.util.random(-40, 40), 90
         );
+        this.AddType("blood");
     },
 });
 

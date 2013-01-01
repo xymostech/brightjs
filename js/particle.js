@@ -3,6 +3,7 @@ Bright.particle = (function() {
 var particle = ABXY.entity2d.Extend({
     Init: function(name, sprites, sprite, time, x, y, xvel, yvel, gravity) {
         this._super(name, x, y, xvel, yvel);
+        this.AddType("particle");
 
         this.sprites = sprites;
         this.sprite = sprite;

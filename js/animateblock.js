@@ -3,6 +3,7 @@ Bright.animateblock = (function() {
 var animateblock = ABXY.entity2d.Extend({
     Init: function(name, x, y, sprites, offset, number, speed) {
         this._super(name, x, y);
+        this.AddType("animateblock");
 
         this.sprites = sprites;
 

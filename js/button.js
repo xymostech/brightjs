@@ -5,6 +5,7 @@ var button = Bright.stillblock.Extend({
         var sprites = new ABXY.spritesheet2d("img/sheet_buttons.png", 4, 2, 20, 20);
 
         this._super("button", x, y, sprites);
+        this.AddType("button");
 
         this.initial_enabled = initial_enabled;
 

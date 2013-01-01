@@ -15,6 +15,7 @@ var spikes = Bright.stillblock.Extend({
         var sprites = new ABXY.spritesheet2d("img/sheet_spikes.png", 4, 1, 20, 20);
 
         this._super("spikes", x, y, sprites, variety);
+        this.AddType("spikes");
     },
 });
 

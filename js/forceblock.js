@@ -5,6 +5,7 @@ var forceblock = Bright.animateblock.Extend({
         var sprites = new ABXY.spritesheet2d("img/sheet_forceblock.png", 4, 3, 20, 20);
 
         this._super("forceblock", x, y, sprites);
+        this.AddBlock("forceblock");
 
         this.initial_enabled = initial_enabled;
 

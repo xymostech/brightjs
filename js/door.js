@@ -3,6 +3,7 @@ Bright.door = (function() {
 var door = ABXY.entity2d.Extend({
     Init: function(x, y, locked) {
         this._super("door", x, y);
+        this.AddType("door");
 
         this.sprites = new ABXY.spritesheet2d("img/sheet_door.png", 4, 1, 20, 20);
 

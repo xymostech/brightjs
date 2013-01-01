@@ -11,6 +11,7 @@ var block = Bright.stillblock.Extend({
 
         var sprites = new ABXY.spritesheet2d("img/sheet_blocks.png", 4, 1, 20, 20);
         this._super("block", x, y, sprites, variety);
+        this.AddType("block");
     },
 });
 

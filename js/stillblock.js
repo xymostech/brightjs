@@ -3,6 +3,7 @@ Bright.stillblock = (function() {
 var stillblock = ABXY.entity2d.Extend({
     Init: function(name, x, y, sprites, offset) {
         this._super(name, x, y);
+        this.AddType("stillblock");
 
         this.sprites = sprites;
 

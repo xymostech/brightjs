@@ -10,6 +10,7 @@ var deco = Bright.stillblock.Extend({
         }
 
         this._super("deco", x, y, sprites, sprite);
+        this.AddType("deco");
     },
 });
 

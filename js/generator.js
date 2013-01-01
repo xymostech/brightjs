@@ -15,6 +15,7 @@ var generator = Bright.animateblock.Extend({
         var sprites = new ABXY.spritesheet2d("img/sheet_generator.png", 6, 4, 20, 20);
 
         this._super("generator", x, y, sprites);
+        this.AddType("generator");
 
         this.initial_enabled = initial_enabled;
         this.SetEnabled(this.initial_enabled);
