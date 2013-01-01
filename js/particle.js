@@ -14,12 +14,12 @@ var particle = ABXY.entity2d.Extend({
         this.count = 0;
     },
 
-    Update: function() {
-        this.vel.y += this.gravity / 60.0;
+    Update: function(time) {
+        this.vel.y += this.gravity * time;
 
-        this._super();
+        this._super(time);
 
-        this.count++;
+        this.count += time;
         if (this.count > this.time) {
             this.world.RemoveEntity(this);
         }
