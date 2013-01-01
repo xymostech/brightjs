@@ -25,7 +25,8 @@ var Bright = {
         game.Update();
         game.Draw();
 
-        setTimeout(this.MainLoop.bind(this, game), 1000.0 / 60.0);
+        var that = this;
+        game.Sleep(function() { that.MainLoop(game); });
     },
 
     Startup: function() {
