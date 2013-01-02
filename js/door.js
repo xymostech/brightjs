@@ -25,7 +25,7 @@ var door = ABXY.entity2d.Extend({
 
         if (!this.closed) {
             this.delay += time;
-            if (this.delay > 30) {
+            if (this.delay > 0.5) {
                 this.closed = true;
                 this.delay = 0;
             }
