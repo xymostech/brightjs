@@ -19,6 +19,7 @@ var Bright = {
         "impact": ["animateblock"],
         "particle": [],
         "blood": ["particle"],
+        "bunny": [],
     },
 
     MainLoop: function(game) {

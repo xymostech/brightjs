@@ -24,6 +24,16 @@ var mainstage = ABXY.worldstage2d.Extend({
         this.world.AddEntity(new Bright.blood(240, 20));
         this.world.AddEntity(new Bright.blood(240, 20));
         this.world.AddEntity(new Bright.blood(240, 20));
+        this.world.AddEntity(new Bright.bunny(260, 20));
+        this.world.AddEntity(new Bright.block(240, 80, "wood"));
+        this.world.AddEntity(new Bright.block(260, 80, "wood"));
+        this.world.AddEntity(new Bright.block(280, 80, "wood"));
+        this.world.AddEntity(new Bright.block(220, 80, "wood"));
+        this.world.AddEntity(new Bright.block(220, 60, "wood"));
+        this.world.AddEntity(new Bright.block(300, 80, "wood"));
+        this.world.AddEntity(new Bright.block(300, 60, "wood"));
+        this.world.AddEntity(new Bright.spikes(300, 20, "down"));
+        this.world.AddEntity(new Bright.spikes(220, 20, "down"));
     },
 });
 
