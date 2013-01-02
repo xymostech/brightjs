@@ -15,10 +15,10 @@ var particle = ABXY.entity2d.Extend({
         this.count = 0;
     },
 
-    Update: function(time) {
+    Update: function(time, keys) {
         this.vel.y += this.gravity * time;
 
-        this._super(time);
+        this._super(time, keys);
 
         this.count += time;
         if (this.count > this.time) {

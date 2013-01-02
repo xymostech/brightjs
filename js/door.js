@@ -20,8 +20,8 @@ var door = ABXY.entity2d.Extend({
         }
     },
 
-    Update: function(time) {
-        this._super(time);
+    Update: function(time, keys) {
+        this._super(time, keys);
 
         if (!this.closed) {
             this.delay += time;

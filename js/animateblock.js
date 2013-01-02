@@ -22,12 +22,12 @@ var animateblock = ABXY.entity2d.Extend({
         this.delay = 0;
     },
 
-    Update: function(time) {
+    Update: function(time, keys) {
         this.delay = (this.delay + time * 60) % (this.speed * this.number);
 
         if (this.delay < time * 60 && this.OnAnimateEnd) { this.OnAnimateEnd(); }
 
-        this._super(time);
+        this._super(time, keys);
     },
 
     Draw: function(context) {
