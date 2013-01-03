@@ -8,6 +8,9 @@ var mainstage = ABXY.worldstage2d.Extend({
     OnLoad: function(game) {
         this._super(game);
 
+        this.scale.x = 2;
+        this.scale.y = 2;
+
         this.world.AddEntity(new Bright.block(0, 20, "wood"));
         this.world.AddEntity(new Bright.forceblock(20, 20, true));
         this.world.AddEntity(new Bright.door(40, 20, false));

@@ -39,6 +39,7 @@ var Bright = {
         var game = new ABXY.game("game", canvas, {
             width: 800,
             height: 600,
+            smooth: false,
         });
 
         var main_stage = new Bright.mainstage("stage");
