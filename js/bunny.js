@@ -121,9 +121,7 @@ var bunny = ABXY.entity2d.Extend({
                     this.pos.x + this.settings.hit_x > target.pos.x &&
                     this.usebutton)
                 {
-                    this.SendMessage("../forceblock", "toggle");
-                    this.SendMessage("../generator", "toggle");
-                    this.SendMessage("../button", "toggle");
+                    target.Interact(this);
                 }
             }, this);
 

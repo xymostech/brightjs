@@ -1,7 +1,7 @@
 Bright.forceblock = (function() {
 
 var forceblock = Bright.animateblock.Extend({
-    Init: function(x, y, initial_enabled) {
+    Init: function(x, y, channel, initial_enabled) {
         var sprites = new ABXY.spritesheet2d("img/sheet_forceblock.png", 4, 3, 20, 20);
 
         this._super("forceblock", x, y, sprites);
@@ -10,6 +10,8 @@ var forceblock = Bright.animateblock.Extend({
         this.initial_enabled = initial_enabled;
 
         this.SetEnabled(this.initial_enabled);
+
+        this.channel = channel;
     },
 
     SetEnabled: function(enabled) {
@@ -34,7 +36,7 @@ var forceblock = Bright.animateblock.Extend({
     },
 
     ReceiveMessage: function(from, id, message) {
-        if (id == "toggle") {
+        if (id == "toggle" && message === this.channel) {
             this.SetEnabled(!this.enabled);
         } else if (id == "reset") {
             this.SetEnabled(this.initial_enabled);

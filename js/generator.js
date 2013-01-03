@@ -1,7 +1,7 @@
 Bright.generator = (function() {
 
 var generator = Bright.animateblock.Extend({
-    Init: function(x, y, facing, initial_enabled) {
+    Init: function(x, y, facing, channel, initial_enabled) {
         if (facing == "up") {
             this.main_offset = 0;
         } else if (facing == "left") {
@@ -17,6 +17,8 @@ var generator = Bright.animateblock.Extend({
         this._super("generator", x, y, sprites);
         this.AddType("generator");
 
+        this.channel = channel;
+
         this.initial_enabled = initial_enabled;
         this.SetEnabled(this.initial_enabled);
     },
@@ -31,7 +33,7 @@ var generator = Bright.animateblock.Extend({
     },
 
     ReceiveMessage: function(from, id, message) {
-        if (id == "toggle") {
+        if (id == "toggle" && message === this.channel) {
             this.SetEnabled(!this.enabled);
         } else if (id == "reset") {
             this.SetEnabled(this.initial_enabled);
