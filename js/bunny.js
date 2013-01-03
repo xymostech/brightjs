@@ -6,8 +6,13 @@ var bunny = ABXY.entity2d.Extend({
 
         this.sprites = new ABXY.spritesheet2d("img/sheet_bunny.png", 4, 6, 20, 20);
 
-        this.hit_x = 15;
-        this.hit_y = 20;
+        this.settings = {
+            gravity: 4,
+            jump_height: 110,
+            hit_x: 15,
+            hit_y: 20,
+            horiz_speed: 60,
+        };
 
         this.on_ground = false;
         this.faceleft = false;
@@ -55,11 +60,11 @@ var bunny = ABXY.entity2d.Extend({
 
         if (this.alive) {
             if (keys.IsKeyPressed('A')) {
-                this.pos.x -= time * 60;
+                this.pos.x -= time * this.settings.horiz_speed;
                 this.faceleft = true;
                 this.walking = true;
             } else if (keys.IsKeyPressed('D')) {
-                this.pos.x += time * 60;
+                this.pos.x += time * this.settings.horiz_speed;
                 this.faceleft = false;
                 this.walking = true;
             } else {
@@ -67,7 +72,7 @@ var bunny = ABXY.entity2d.Extend({
             }
 
             if (keys.IsKeyPressed('W') && this.on_ground) {
-                this.vel.y -= 90;
+                this.vel.y -= this.settings.jump_height;
                 this.GetParentWorld().AddEntity(new Bright.smoke(this.pos.x, this.pos.y));
             }
 
@@ -86,10 +91,10 @@ var bunny = ABXY.entity2d.Extend({
             }
 
             _.each(this.GetParentWorld().FilterEntities("beam"), function(target) {
-                if (this.pos.y - this.hit_y < target.pos.y &&
-                    this.pos.y + this.hit_y > target.pos.y &&
-                    this.pos.x - this.hit_x < target.pos.x &&
-                    this.pos.x + this.hit_x > target.pos.x) {
+                if (this.pos.y - this.settings.hit_y < target.pos.y &&
+                    this.pos.y + this.settings.hit_y > target.pos.y &&
+                    this.pos.x - this.settings.hit_x < target.pos.x &&
+                    this.pos.x + this.settings.hit_x > target.pos.x) {
                     this.Die();
                     this.GetParentWorld().AddEntity(new Bright.smoke(this.pos.x, this.pos.y));
                 }
@@ -98,8 +103,8 @@ var bunny = ABXY.entity2d.Extend({
             _.each(this.GetParentWorld().FilterEntities("spikes"), function(target) {
                 if (this.pos.y - 1 < target.pos.y &&
                     this.pos.y + 1 > target.pos.y &&
-                    this.pos.x - this.hit_x < target.pos.x &&
-                    this.pos.x + this.hit_x > target.pos.x)
+                    this.pos.x - this.settings.hit_x < target.pos.x &&
+                    this.pos.x + this.settings.hit_x > target.pos.x)
                 {
                     this.Die();
                     _.times(5, function() {
@@ -110,10 +115,10 @@ var bunny = ABXY.entity2d.Extend({
             }, this);
 
             _.each(this.GetParentWorld().FilterEntities("button"), function(target) {
-                if (this.pos.y - this.hit_y < target.pos.y &&
-                    this.pos.y + this.hit_y > target.pos.y &&
-                    this.pos.x - this.hit_x < target.pos.x &&
-                    this.pos.x + this.hit_x > target.pos.x &&
+                if (this.pos.y - this.settings.hit_y < target.pos.y &&
+                    this.pos.y + this.settings.hit_y > target.pos.y &&
+                    this.pos.x - this.settings.hit_x < target.pos.x &&
+                    this.pos.x + this.settings.hit_x > target.pos.x &&
                     this.usebutton)
                 {
                     this.SendMessage("../forceblock", "toggle");
@@ -135,7 +140,7 @@ var bunny = ABXY.entity2d.Extend({
             }
         }
 
-        this.vel.y += 3;
+        this.vel.y += this.settings.gravity;
         var old_on_ground = this.on_ground;
         this.on_ground = false;
 
@@ -150,34 +155,34 @@ var bunny = ABXY.entity2d.Extend({
                     return;
                 }
 
-                if (this.pos.y - this.hit_y + 1 < block.pos.y &&
-                    this.pos.y + this.hit_y > block.pos.y &&
-                    this.pos.x + this.hit_x > block.pos.x &&
-                    this.pos.x - this.hit_x < block.pos.x)
+                if (this.pos.y - this.settings.hit_y + 1 < block.pos.y &&
+                    this.pos.y + this.settings.hit_y > block.pos.y &&
+                    this.pos.x + this.settings.hit_x > block.pos.x &&
+                    this.pos.x - this.settings.hit_x < block.pos.x)
                 {
-                    var old_top = old_pos.y - this.hit_y + 1 < block.pos.y;
-                    var old_bot = old_pos.y + this.hit_y > block.pos.y;
+                    var old_top = old_pos.y - this.settings.hit_y + 1 < block.pos.y;
+                    var old_bot = old_pos.y + this.settings.hit_y > block.pos.y;
                     var old_vert = old_top && old_bot;
 
-                    var old_left = old_pos.x + this.hit_x > block.pos.x;
-                    var old_right = old_pos.x - this.hit_x < block.pos.x;
+                    var old_left = old_pos.x + this.settings.hit_x > block.pos.x;
+                    var old_right = old_pos.x - this.settings.hit_x < block.pos.x;
                     var old_horiz = old_left && old_right;
 
                     if ((!old_horiz && old_vert) ||
                         (!old_horiz && !old_vert && !old_on_ground)) {
                         if (!old_right) {
-                            this.pos.x = block.pos.x + this.hit_x;
+                            this.pos.x = block.pos.x + this.settings.hit_x;
                         } else {
-                            this.pos.x = block.pos.x - this.hit_x;
+                            this.pos.x = block.pos.x - this.settings.hit_x;
                         }
                     } else {
                         this.vel.x = 0;
                         this.vel.y = 0;
                         this.on_ground = !old_bot || old_on_ground;
                         if (!old_top) {
-                            this.pos.y = block.pos.y + this.hit_y - 1;
+                            this.pos.y = block.pos.y + this.settings.hit_y - 1;
                         } else {
-                            this.pos.y = block.pos.y - this.hit_y;
+                            this.pos.y = block.pos.y - this.settings.hit_y;
                         }
                     }
                 }
